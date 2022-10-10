@@ -20,3 +20,11 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./caddy/config:/config
       - ./caddy/data:/data
+  restic:
+    build: ./restic
+    container_name: restic
+    restart: unless-stopped
+    env_file: ./restic/.env
+    volumes:
+      - .:/data:ro
+

@@ -3,3 +3,5 @@ caddy/config
 
 vaultwarden/data
 
+restic/.env
+
