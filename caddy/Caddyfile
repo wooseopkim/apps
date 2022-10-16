@@ -26,3 +26,22 @@ https://vaultwarden.apps.wooseop.kim:443 {
   }
 }
 
+
+https://ocis.apps.wooseop.kim:443 {
+  log {
+    level INFO
+    output file /data/ocis.log {
+      roll_size 10MB
+      roll_keep 10
+    }
+  }
+
+  tls wooseop@protonmail.com
+
+  encode gzip
+
+  reverse_proxy ocis:9200 {
+       header_up X-Real-IP {remote_host}
+  }
+}
+

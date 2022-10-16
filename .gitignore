@@ -1,7 +1,10 @@
-caddy/data
-caddy/config
+caddy/data/*
+caddy/config/*
 
-vaultwarden/data
+vaultwarden/data/*
+
+ocis/data/*
+ocis/config/*
 
 restic/.env
 
