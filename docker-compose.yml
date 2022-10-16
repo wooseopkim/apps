@@ -9,16 +9,6 @@ services:
       WEBSOCKET_ENABLED: "true"
     volumes:
       - ./vaultwarden/data:/data
-  ocis:
-    image: docker.io/owncloud/ocis:2.0.0-beta.8
-    container_name: ocis
-    restart: unless-stopped
-    environment:
-      PROXY_TLS: "false"
-      OCIS_URL: "https://ocis.apps.wooseop.kim"
-    volumes:
-      - ./ocis/config:/etc/ocis:ro
-      - ./ocis/data:/var/lib/ocis
   caddy:
     image: docker.io/caddy:2-alpine
     container_name: caddy
