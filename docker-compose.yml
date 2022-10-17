@@ -27,4 +27,11 @@ services:
     env_file: ./restic/.env
     volumes:
       - .:/data:ro
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 0 * * *"
 
