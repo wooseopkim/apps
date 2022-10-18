@@ -9,6 +9,16 @@ services:
       WEBSOCKET_ENABLED: "true"
     volumes:
       - ./vaultwarden/data:/data
+  etesync:
+    build:
+      context: ./etesync
+      args:
+        ETESYNC_TAG: v0.10.0
+    container_name: etesync
+    restart: unless-stopped
+    volumes:
+      - ./etesync/config:/config:ro
+      - ./etesync/data:/data
   caddy:
     image: docker.io/caddy:2-alpine
     container_name: caddy
@@ -17,8 +27,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./caddy/config:/config:ro
+      - ./caddy/config/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/config/generated:/config
       - ./caddy/data:/data
   restic:
     build: ./restic

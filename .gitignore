@@ -1,7 +1,11 @@
+prometheus/data/*
+
 caddy/data/*
-caddy/config/*
+caddy/config/generated/*
 
 vaultwarden/data/*
+
+etesync/data/*
 
 restic/.env
 
