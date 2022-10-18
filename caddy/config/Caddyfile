@@ -1,69 +1,68 @@
 https://grafana.apps.wooseop.kim:443 {
-  log {
-    level INFO
-    output file /data/grafana.log {
-      roll_size 10MB
-      roll_keep 10
-    }
-  }
+	log {
+		level INFO
+		output file /data/grafana.log {
+			roll_size 10MB
+			roll_keep 10
+		}
+	}
 
-  tls wooseop@protonmail.com
+	tls wooseop@protonmail.com
 
-  encode gzip
+	encode gzip
 
-  reverse_proxy grafana:3000 {
-      header_up X-Real-IP {remote_host}
-  }
+	reverse_proxy grafana:3000 {
+		header_up X-Real-IP {remote_host}
+	}
 }
 
 https://vaultwarden.apps.wooseop.kim:443 {
-  log {
-    level INFO
-    output file /data/vaultwarden.log {
-      roll_size 10MB
-      roll_keep 10
-    }
-  }
+	log {
+		level INFO
+		output file /data/vaultwarden.log {
+			roll_size 10MB
+			roll_keep 10
+		}
+	}
 
-  # Use the ACME HTTP-01 challenge to get a cert for the configured domain.
-  tls wooseop@protonmail.com
+	# Use the ACME HTTP-01 challenge to get a cert for the configured domain.
+	tls wooseop@protonmail.com
 
-  # This setting may have compatibility issues with some browsers
-  # (e.g., attachment downloading on Firefox). Try disabling this
-  # if you encounter issues.
-  encode gzip
+	# This setting may have compatibility issues with some browsers
+	# (e.g., attachment downloading on Firefox). Try disabling this
+	# if you encounter issues.
+	encode gzip
 
-  # Notifications redirected to the WebSocket server
-  reverse_proxy /notifications/hub vaultwarden:3012
+	# Notifications redirected to the WebSocket server
+	reverse_proxy /notifications/hub vaultwarden:3012
 
-  # Proxy everything else to Rocket
-  reverse_proxy vaultwarden:80 {
-       # Send the true remote IP to Rocket, so that vaultwarden can put this in the
-       # log, so that fail2ban can ban the correct IP.
-       header_up X-Real-IP {remote_host}
-  }
+	# Proxy everything else to Rocket
+	reverse_proxy vaultwarden:80 {
+		# Send the true remote IP to Rocket, so that vaultwarden can put this in the
+		# log, so that fail2ban can ban the correct IP.
+		header_up X-Real-IP {remote_host}
+	}
 }
 
 https://etesync.apps.wooseop.kim:443 {
-  log {
-    level INFO
-    output file /data/etesync.log {
-      roll_size 10MB
-      roll_keep 10
-    }
-  }
+	log {
+		level INFO
+		output file /data/etesync.log {
+			roll_size 10MB
+			roll_keep 10
+		}
+	}
 
-  tls wooseop@protonmail.com
+	tls wooseop@protonmail.com
 
-  encode gzip
+	encode gzip
 
-  file_server * browse {
-      root /srv/etebase/static
-  }
+	file_server * browse {
+		root /srv/etebase/static
+	}
 
-  reverse_proxy etesync:8000 {
-      header_up Host {host}
-      header_up X-Real-IP {remote_host}
-  }
+	reverse_proxy etesync:8000 {
+		header_up Host {host}
+		header_up X-Real-IP {remote_host}
+	}
 }
-
