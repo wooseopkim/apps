@@ -1,5 +1,7 @@
 prometheus/data/*
 
+grafana/data/*
+
 caddy/data/*
 caddy/config/generated/*
 

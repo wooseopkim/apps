@@ -1,6 +1,31 @@
-version: '3'
+version: "3.9"
 
 services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+    command:
+      - "--path.rootfs=/host"
+  prometheus:
+    image: quay.io/prometheus/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    extra_hosts:
+      host.docker.internal: host-gateway
+    volumes:
+      - ./prometheus/config:/etc/prometheus
+      - ./prometheus/data:/prometheus:rslave
+  grafana:
+    image: docker.io/grafana/grafana-oss
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - ./grafana/data:/var/lib/grafana
   vaultwarden:
     image: docker.io/vaultwarden/server:alpine
     container_name: vaultwarden
