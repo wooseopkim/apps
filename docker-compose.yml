@@ -31,7 +31,8 @@ services:
     container_name: vaultwarden
     restart: unless-stopped
     environment:
-      WEBSOCKET_ENABLED: "true"
+      WEBSOCKET_ENABLED: true
+      SIGNUPS_ALLOWED: false
     volumes:
       - ./vaultwarden/data:/data
   etesync:
