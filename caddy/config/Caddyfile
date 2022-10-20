@@ -1,3 +1,11 @@
+{
+	admin caddy:2019
+
+	servers {
+		metrics
+	}
+}
+
 https://grafana.apps.wooseop.kim:443 {
 	log {
 		level INFO
