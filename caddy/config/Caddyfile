@@ -10,39 +10,34 @@
 	}
 }
 
-https://grafana.apps.wooseop.kim {
+(app) {
 	tls wooseop@protonmail.com
 
 	encode zstd gzip
 
-	reverse_proxy grafana:3000 {
+	reverse_proxy {args.0} {
 		header_up X-Real-IP {remote_host}
 	}
+}
+
+https://grafana.apps.wooseop.kim {
+	import app "grafana:3000"
 }
 
 https://vaultwarden.apps.wooseop.kim {
-	tls wooseop@protonmail.com
-
-	encode zstd gzip
+	import app "vaultwarden:80"
 
 	reverse_proxy /notifications/hub vaultwarden:3012
-
-	reverse_proxy vaultwarden:80 {
-		header_up X-Real-IP {remote_host}
-	}
 }
 
 https://etesync.apps.wooseop.kim {
-	tls wooseop@protonmail.com
-
-	encode zstd gzip
+	import app "etesync:8000"
 
 	file_server * browse {
 		root /srv/etebase/static
 	}
 
 	reverse_proxy etesync:8000 {
-		header_up Host {host}
 		header_up X-Real-IP {remote_host}
 	}
 }
