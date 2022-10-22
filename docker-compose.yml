@@ -44,6 +44,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./etesync/config:/config:ro
+      - ./etesync/config/etesync.ini:/etc/etebase-server/etebase-server.ini:ro
       - ./etesync/data:/data
   caddy:
     image: docker.io/caddy:2-alpine

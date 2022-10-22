@@ -7,10 +7,7 @@ WORKDIR server
 
 RUN pip install -r requirements.txt
 
-RUN mkdir -p /etc/etebase-server /data/static /data/media
-COPY /config/etesync.ini /etc/etebase-server/etebase-server.ini
-RUN python ./manage.py migrate
-RUN python ./manage.py collectstatic --noinput
+COPY ./entrypoint.sh ./entrypoint.sh
 
-ENTRYPOINT ["uvicorn", "etebase_server.asgi:application", "--host", "0.0.0.0"]
+ENTRYPOINT ["./entrypoint.sh"]
 
