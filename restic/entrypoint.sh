@@ -1,6 +1,6 @@
 #!/bin/sh
 
-restic init
+restic snapshots || restic init
 
-crond -f -S
+watch -n 86400 restic backup /data
 

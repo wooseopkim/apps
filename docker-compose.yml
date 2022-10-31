@@ -58,12 +58,14 @@ services:
       - ./caddy/config/generated:/config
       - ./caddy/data:/data
   restic:
-    build: ./restic
+    image: docker.io/wooseopkim/restic:latest
     container_name: restic
     restart: unless-stopped
     env_file: ./restic/.env
+    entrypoint: /entrypoint.sh
     volumes:
       - .:/data:ro
+      - ./restic/entrypoint.sh:/entrypoint.sh:ro
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
