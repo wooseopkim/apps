@@ -2,6 +2,7 @@ prometheus/data/*
 
 grafana/data/*
 
+caddy/.env
 caddy/data/*
 caddy/config/generated/*
 

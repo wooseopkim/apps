@@ -20,17 +20,17 @@
 	}
 }
 
-https://grafana.apps.wooseop.kim {
+https://grafana.{$DOMAIN} {
 	import app "grafana:3000"
 }
 
-https://vaultwarden.apps.wooseop.kim {
+https://vaultwarden.{$DOMAIN} {
 	import app "vaultwarden:80"
 
 	reverse_proxy /notifications/hub vaultwarden:3012
 }
 
-https://etesync.apps.wooseop.kim {
+https://etesync.{$DOMAIN} {
 	import app "etesync:8000"
 
 	file_server * browse {
