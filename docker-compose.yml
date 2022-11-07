@@ -6,7 +6,7 @@ services:
     container_name: node_exporter
     network_mode: host
     pid: host
-    restart: unless-stopped
+    restart: always
     volumes:
       - /:/host:ro,rslave
     command:
@@ -14,7 +14,7 @@ services:
   prometheus:
     image: quay.io/prometheus/prometheus:latest
     container_name: prometheus
-    restart: unless-stopped
+    restart: always
     extra_hosts:
       host.docker.internal: host-gateway
     volumes:
@@ -69,7 +69,7 @@ services:
   restic:
     image: docker.io/wooseopkim/restic:latest
     container_name: restic
-    restart: unless-stopped
+    restart: always
     env_file: ./restic/.env
     entrypoint: /entrypoint.sh
     volumes:
@@ -78,7 +78,7 @@ services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
-    restart: unless-stopped
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --schedule "0 0 0 * * *"
