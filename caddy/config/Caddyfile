@@ -41,3 +41,10 @@ https://etesync.{$DOMAIN} {
 		header_up X-Real-IP {remote_host}
 	}
 }
+
+https://gitea.{$DOMAIN} {
+	import app "gitea:3000"
+
+	reverse_proxy gitea:22
+}
+
