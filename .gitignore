@@ -10,6 +10,8 @@ vaultwarden/data/*
 
 etesync/data/*
 
+gitea/data/*
+
 restic/.env
 
 !.gitkeep
