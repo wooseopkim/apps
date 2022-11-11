@@ -15,6 +15,11 @@
 
 	encode zstd gzip
 
+	Permissions-Policy interest-cohort=()
+	Strict-Transport-Security max-age=31536000;
+	Referrer-Policy no-referrer
+	X-Robots-Tag noindex
+
 	reverse_proxy {args.0} {
 		header_up X-Real-IP {remote_host}
 	}
