@@ -50,6 +50,8 @@ services:
     image: docker.io/gitea/gitea:1
     container_name: gitea
     restart: unless-stopped
+    environment:
+      GITEA__service__DISABLE_REGISTRATION: true
     volumes:
       - ./gitea/data:/data
       - /etc/timezone:/etc/timezone:ro
