@@ -8,8 +8,6 @@ caddy/config/generated/*
 
 vaultwarden/data/*
 
-etesync/data/*
-
 gitea/data/*
 
 restic/.env
