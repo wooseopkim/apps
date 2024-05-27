@@ -17,7 +17,7 @@ jobs:
       - name: Deploy
         run: |
           echo "$SSH_PRIVATE_KEY" | ssh-add -
-          cat ./apply.sh | ssh -i  "$SSH_USER"@"$SSH_HOST"
+          cat ./apply.sh | ssh "$SSH_USER"@"$SSH_HOST"
         env:
           SSH_PRIAVTE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ secrets.SSH_USER }}
