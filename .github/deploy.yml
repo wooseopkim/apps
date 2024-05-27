@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check if everything works
+        uses: hoverkraft-tech/compose-action@v2.0.0
+
+      - name: Deploy
+        run: |
+          echo "$SSH_PRIVATE_KEY" | ssh-add -
+          cat ./apply.sh | ssh -i  "$SSH_USER"@"$SSH_HOST"
+        env:
+          SSH_PRIAVTE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+
