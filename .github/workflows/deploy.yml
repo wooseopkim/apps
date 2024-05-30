@@ -13,7 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Prepare for CI
-        run: cp ./giscus/.env.example ./giscus/.env
+        run: |
+          find -name '.env.example' -type f | \
+            sed 's/\(.\+\).example/cp \1.example \1/g' | \
+            xargs -I % bash -c %
       - name: Check if everything works
         uses: hoverkraft-tech/compose-action@v2.0.0
 
