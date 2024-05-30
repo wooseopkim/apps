@@ -24,6 +24,7 @@ jobs:
         run: |
           eval `ssh-agent -s`
           echo "$SSH_PRIVATE_KEY" | ssh-add -
+          mkdir -p ~/.ssh
           ssh-keyscan -t rsa "$SSH_HOST" >> ~/.ssh/known_hosts
           cat ./apply.sh | ssh "$SSH_USER"@"$SSH_HOST"
         env:
