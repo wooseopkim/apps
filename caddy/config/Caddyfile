@@ -37,18 +37,6 @@ https://vaultwarden.{$DOMAIN} {
 	reverse_proxy /notifications/hub vaultwarden:3012
 }
 
-https://etesync.{$DOMAIN} {
-	import app "etesync:8000"
-
-	file_server * browse {
-		root /srv/etebase/static
-	}
-
-	reverse_proxy etesync:8000 {
-		header_up X-Real-IP {remote_host}
-	}
-}
-
 https://gitea.{$DOMAIN} {
 	import app "gitea:3000"
 
