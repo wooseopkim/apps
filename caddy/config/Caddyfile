@@ -55,3 +55,7 @@ https://gitea.{$DOMAIN} {
 	reverse_proxy gitea:22
 }
 
+https://giscus.{$DOMAIN} {
+	import app "giscus:3000"
+}
+
