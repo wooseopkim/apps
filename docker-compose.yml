@@ -45,6 +45,11 @@ services:
       - ./gitea/data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+  giscus:
+    image: docker.io/wooseopkim/giscus:latest
+    container_name: giscus
+    restart: unless-stopped
+    env_file: ./giscus/.env
   caddy:
     image: docker.io/caddy:2-alpine
     container_name: caddy

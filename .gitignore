@@ -6,6 +6,8 @@ caddy/.env
 caddy/data/*
 caddy/config/generated/*
 
+giscus/.env
+
 vaultwarden/data/*
 
 gitea/data/*
