@@ -12,6 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare for CI
+        run: cp ./giscus/.env.example ./giscus/.env
       - name: Check if everything works
         uses: hoverkraft-tech/compose-action@v2.0.0
 
