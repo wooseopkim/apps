@@ -63,7 +63,7 @@ services:
       - ./caddy/config/generated:/config
       - ./caddy/data:/data
   restic:
-    image: docker.io/wooseopkim/restic:latest
+    image: ghcr.io/restic/restic:latest
     container_name: restic
     restart: always
     env_file: ./restic/.env
